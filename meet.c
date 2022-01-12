@@ -126,7 +126,7 @@ signal(SIGINT, INThandler);					// Interrupt for CRRL + C to break
 signal(SIGALRM, &sigalrm_handler);  		// set a signal handler for mute delay
 
 					
-INIT_IR_FRAME_FORMAT;
+system("sudo ir-keytable -p " INIT_IR_FRAME_FORMAT); 	// define IR frame format
 
 
 //system("v4l2-ctl --set-ctrl rotate=180");	// Rotate picture
@@ -152,7 +152,7 @@ while(1)
 		
 	read(device,&ev, sizeof(ev));
 	//if(1) {
-	if(ev.type == 4 && ev.code == 4){
+	if(ev.type == INIT_IR_EVENT_TYPE && ev.code == INIT_IR_EVENT_CODE){
 		#ifdef DEBUG
 		printf("Type: %i Code: %i Value: %i\n",ev.type, ev.code, ev.value);
 		#endif

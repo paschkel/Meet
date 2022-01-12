@@ -1,8 +1,9 @@
 
 // Format
-#define		INIT_IR_FRAME_FORMAT	system("sudo ir-keytable -p nec")			// Set NEC
+#define		INIT_IR_FRAME_FORMAT	"nec"			// Set NEC
 
-
+#define		INIT_IR_EVENT_TYPE		4
+#define		INIT_IR_EVENT_CODE		4
 // Keys
 #define 	ON_OFF		0x0c
 #define 	GREEN		0x45
