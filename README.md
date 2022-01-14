@@ -25,7 +25,7 @@ Define IR-Pin in "/boot/config.txt"
 ```sh
 sudo nano /boot/config.txt
 ```
-Define pin 15 for IR
+Define pin 15 for IR-Receiver
 ```sh
 dtoverlay=gpio-ir,gpio_pin=15
 ```
@@ -68,7 +68,7 @@ sudo python3 i2smic.py
 ```sh
 sudo reboot
 ```
-Create Volume Controll for new Input. Create folloing file and paste content off "asound.conf". Save and exit file.
+Create Volume Controll for new Input. Add folloing file and paste content off "asound.conf". Save and exit file.
 ```sh
 sudo nano /etc/asound.conf
 ```
@@ -87,10 +87,9 @@ sudo ./i2smic.sh
 ```
 
 ## MeetApp
-- Move File Application Files (*.c & *.h) to "/home/pi/MeetApp"
+ Move File Application Files (*.c & *.h) to "/home/pi/MeetApp"<br>
 
-### Autostart MeetApp
-Move File "CameraWoraround.desktop" to "/home/pi/.config/autostart"
+To Autostart MeetApp, move File "CameraWoraround.desktop" to "/home/pi/.config/autostart"
 
 Install XDO-Tool (used to send Keys to browser for Mute, Video Off, etc.)
 ```sh
