@@ -37,6 +37,45 @@ sudo apt-get install ir-keytable
 
 
 ## Microphone
+Installation of I2S Microphone
+Microphone in browser is not working with Pulseausio, just ALSA is required. So first step is to remove Pulseaudio:
+```sh
+sudo apt-get –-purge remove pulseaudio
+```
+```sh
+sudo reboot
+```
+Install ALSA (maybe it is already there)
+```sh
+sudo apt-get install libasound2 alsa-utils alsa-oss
+```
+```sh
+sudo reboot
+```
+Install Microphone
+```sh
+sudo apt install python3-pip
+```
+```sh
+sudo pip3 install --upgrade adafruit-python-shell
+```
+```sh
+wget https://raw.githubusercontent.com/adafruit/Raspberry-Pi-Installer-Scripts/master/i2smic.py
+```
+```sh
+sudo python3 i2smic.py
+```
+```sh
+sudo reboot
+```
+Move File "asound.conf" to "/etc" <br> 
+Or ~/.asoundrc <br><br>
+User Mixer to adjust Volume. Press F6 to selct Sound card and F4 to selct capture. Adjust voluem to 9dB
+```sh
+alsamixer
+```
+
+
 
 ## MeetApp
 - Move File Application Files (*.c & *.h) to "/home/pi/MeetApp"
