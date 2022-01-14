@@ -1,5 +1,5 @@
 # Meet
-Steps to install Meet
+Steps to install Meet. Installation is seperated per Hardware module.
 - Download all Files
 - Create folder "/home/pi/MeetApp"
 
@@ -103,7 +103,7 @@ sudo apt-get install wiringpi
 ```
 
 
-# OnOff
+## OnOff
 Define OFF-Pin in "/boot/config.txt"
 ```sh
 sudo nano /boot/config.txt
