@@ -11,16 +11,9 @@
 #include <softPwm.h>
 
 #include "irController.h"
+#include "led.h"
+#include "fan.h"
 
-// Hardware
-#define 	PIN_FAN			11
-#define 	PIN_LED_RED		22
-#define 	PIN_LED_GREEN	21
-
-#define     LED_OFF   	digitalWrite(PIN_LED_RED, LOW); digitalWrite(PIN_LED_GREEN, LOW)
-#define     LED_RED   	digitalWrite(PIN_LED_RED, HIGH); digitalWrite(PIN_LED_GREEN, LOW)
-#define     LED_GREEN  	digitalWrite(PIN_LED_RED, LOW); digitalWrite(PIN_LED_GREEN, HIGH)
-#define     LED_YELLOW 	digitalWrite(PIN_LED_RED, HIGH); digitalWrite(PIN_LED_GREEN, HIGH)
 
 
 // status
@@ -31,9 +24,7 @@
 
 
 
-
-
-
+// Global Variable
 char status;
 pid_t pid;
 
@@ -41,7 +32,7 @@ pid_t pid;
 
 
 void INThandler(){
-	softPwmWrite (PIN_FAN, 0) ;
+	FanStop() ;
 	LED_OFF;
 	
 	exit(0);
@@ -53,39 +44,11 @@ void sigalrm_handler(int sig) {
 status &= ~MUTEDELAY;
 }
 
-
-int readCPU_Temp(void){
- char buffer[10];
- FILE * temp;
- 
- temp = fopen("/sys/class/thermal/thermal_zone0/temp","rt");
- fread(buffer,10,1,temp);
- fclose(temp);
-  
- return strtol(buffer, NULL, 10)/1000; 	
- }
- 
- 
- 
-void FanControl(void) {
-	
-	if(70 < readCPU_Temp()) {
-		if((status & ACTIVE))
-			softPwmWrite (PIN_FAN, 30);		
-		else
-			softPwmWrite (PIN_FAN, 80);
-		}
-	else
-		softPwmWrite (PIN_FAN, 0);	
-		
-	} 
- 
  
 
 void StartMeeting(char *server, char *meeting, char *name) {
 char buffer[450];
 //"chromium --kiosk --noerrdialogs --disable-session-crashed-bubble --disable-infobars -- check-for-update-interval=604800 --disable-pinch  'https://meet.jit.si/paschkel.de#userInfo.displayName=\"Pascal\"&config.prejoinPageEnabled=false&interfaceConfig.TOOLBAR_BUTTONS=[\"microphone\",\"camera\",\"hangup\"]&interfaceConfig.TOOLBAR_ALWAYS_VISIBLE=false'"
-
 
 LED_RED;
 
@@ -107,6 +70,35 @@ if(pid == 0) {
 	}
 }
 
+void PrepareMeeting(char number) {
+	
+	if(!(status & ACTIVE)) {
+		status |= ACTIVE;
+		#ifdef DEBUG					
+		printf("START Meeting %d\n", number);
+		#endif
+		// Open MeetingRoom File
+		//StartMeeting("https://meet.jit.si/", "maximewird5", "Maxime");
+		}
+	}
+
+
+void TerminateMeeting(void) {
+	if(status & ACTIVE) {
+		status &= ~ACTIVE;
+		#ifdef DEBUG
+		printf("END\n");
+		#endif
+		
+		LED_GREEN;
+		
+		if(pid > 0) {
+			system("xdotool key alt+F4");
+			wait(NULL);				// kill also second process...
+			}
+		}	
+	}
+
 
 
 
@@ -115,6 +107,9 @@ int main()
 char devname[] = "/dev/input/by-path/platform-ir-receiver@f-event";
 int device = open(devname, O_RDONLY);
 struct input_event ev;
+char meetingRoom;
+
+meetingRoom = 1;
 
 
 status = 0;
@@ -131,21 +126,20 @@ system("sudo ir-keytable -p " INIT_IR_FRAME_FORMAT); 	// define IR frame format
 
 
 wiringPiSetup();
-
 pinMode(PIN_LED_RED, OUTPUT); 
 pinMode(PIN_LED_GREEN, OUTPUT); 	
 LED_GREEN;
 
-pinMode(PIN_FAN, OUTPUT); 	
-softPwmCreate (PIN_FAN, 0, 100) ;
-	
+FanInit();
+
+
 
 
 
 
 while(1)
 	{
-	FanControl();
+	FanControl(status & ACTIVE);
 		
 	read(device,&ev, sizeof(ev));
 	//if(1) {
@@ -208,7 +202,7 @@ while(1)
 					}
 				break;			
 
-			case FAV_2:						// Start Video Call - FAV 1
+			case FAV_2:						// Start Video Call - FAV 2
 				if(!(status & ACTIVE)) {
 					status |= ACTIVE;
 					#ifdef DEBUG					
@@ -218,34 +212,39 @@ while(1)
 					}
 				break;			
 
+			case FAV_3:						// Start Video Call - FAV 3
+					PrepareMeeting(3);
+				break;	
+
+			case FAV_4:						// Start Video Call - FAV 4
+					PrepareMeeting(4);
+				break;	
 				
+			case FAV_5:						// Start Video Call - FAV 5
+					PrepareMeeting(5);
+				break;					
+								
 			case RED:						// End Video Call
-				if(status & ACTIVE) {
-					status &= ~ACTIVE;
-					#ifdef DEBUG
-					printf("END\n");
-					#endif
-					
-					LED_GREEN;
-					
-					if(pid > 0) {
-						system("xdotool key alt+F4");
-						wait(NULL);				// kill also second process...
-						}
-					}
+					TerminateMeeting();
 				break;
 
-			case ON_OFF:						// Shut down
+			case ON_OFF:					// Shut down
 					LED_OFF;					
 					system("sudo halt");
 				break;				
 
 			case MINUS:
-
+					if(meetingRoom > 0) meetingRoom--;
+					#ifdef DEBUG
+						printf(">>> %d\n", meetingRoom);
+					#endif
 				break;	
 				
 			case PLUS:
-
+					if(meetingRoom < 5) meetingRoom++;
+					#ifdef DEBUG
+						printf(">>> %d\n", meetingRoom);
+					#endif
 				break;		
 								
 			default:
