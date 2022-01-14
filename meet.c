@@ -84,7 +84,7 @@ void FanControl(void) {
 
 void StartMeeting(char *server, char *meeting, char *name) {
 char buffer[450];
-//"chromium-browser --kiosk --noerrdialogs --disable-session-crashed-bubble --disable-infobars -- check-for-update-interval=604800 --disable-pinch --kiosk 'https://meet.jit.si/paschkel.de#userInfo.displayName=\"Pascal\"&config.prejoinPageEnabled=false&interfaceConfig.TOOLBAR_BUTTONS=[\"microphone\",\"camera\",\"hangup\"]&interfaceConfig.TOOLBAR_ALWAYS_VISIBLE=false'"
+//"chromium --kiosk --noerrdialogs --disable-session-crashed-bubble --disable-infobars -- check-for-update-interval=604800 --disable-pinch  'https://meet.jit.si/paschkel.de#userInfo.displayName=\"Pascal\"&config.prejoinPageEnabled=false&interfaceConfig.TOOLBAR_BUTTONS=[\"microphone\",\"camera\",\"hangup\"]&interfaceConfig.TOOLBAR_ALWAYS_VISIBLE=false'"
 
 
 LED_RED;
@@ -94,7 +94,7 @@ pid = fork();		// create seperate process....
 if(pid == 0) {
 	// build meeting link
 	
-	strcpy(buffer, "chromium-browser --kiosk --noerrdialogs --disable-session-crashed-bubble --disable-infobars --check-for-update-interval=604800 --disable-pinch '");
+	strcpy(buffer, "chromium --kiosk --noerrdialogs --disable-session-crashed-bubble --disable-infobars --check-for-update-interval=604800 --disable-pinch '");
 	strcat(buffer, server);
 	strcat(buffer, meeting);
 	strcat(buffer, "#userInfo.displayName=\"");
@@ -102,9 +102,6 @@ if(pid == 0) {
 	strcat(buffer, "\"&config.prejoinPageEnabled=false&interfaceConfig.TOOLBAR_BUTTONS=[\"microphone\",\"camera\",\"hangup\",\"tileview\"]&interfaceConfig.TOOLBAR_ALWAYS_VISIBLE=true' --use-fake-ui-for-media-stream");
 
 	system(buffer); 
-
-//	system("chromium-browser --kiosk --noerrdialogs --disable-session-crashed-bubble --disable-infobars --check-for-update-interval=604800 --disable-pinch --kiosk 'https://meet.jit.si/paschkel#userInfo.displayName=\"pascal\"&config.prejoinPageEnabled=false&interfaceConfig.TOOLBAR_BUTTONS=[\"microphone\",\"camera\",\"hangup\",\"tileview\"]&interfaceConfig.TOOLBAR_ALWAYS_VISIBLE=true' --use-fake-ui-for-media-stream"); 
-//	system("chromium-browser  'https://meet.jit.si/paschkel' "); 
 
 	exit(EXIT_SUCCESS);
 	}
@@ -239,8 +236,8 @@ while(1)
 				break;
 
 			case ON_OFF:						// Shut down
+					LED_OFF;					
 					system("sudo halt");
-					LED_OFF;
 				break;				
 
 			case MINUS:
