@@ -68,14 +68,23 @@ sudo python3 i2smic.py
 ```sh
 sudo reboot
 ```
-Move File "asound.conf" to "/etc" <br> 
-Or ~/.asoundrc <br><br>
+Create Volume Controll for new Input. Create folloing file and paste content off "asound.conf". Save and exit file.
+```sh
+sudo nano /etc/asound.conf
+```
+Before volume controll is operating you need to acces input first. You can stop recording  with CTL-Break.
+```sh
+arecord -D dmic_sv -c2 -r 44100 -f S32_LE -t wav -V mono -v file.wav
+```
 User Mixer to adjust Volume. Press F6 to selct Sound card and F4 to selct capture. Adjust voluem to 9dB
 ```sh
 alsamixer
 ```
-
-
+<br><br>
+After system update, it could be that microphone is not working. Please run following script to reinstall it.
+```sh
+sudo ./i2smic.sh
+```
 
 ## MeetApp
 - Move File Application Files (*.c & *.h) to "/home/pi/MeetApp"
