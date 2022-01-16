@@ -86,6 +86,15 @@ After system update, it could be that microphone is not working. Please run foll
 sudo ./i2smic.sh
 ```
 
+## HDMI
+```sh
+sudo nano /boot/config.txt
+```
+```sh
+cec_osd_name=Meet
+```
+Hotplug???
+
 ## MeetApp
  Move File Application Files (*.c & *.h) to "/home/pi/MeetApp"<br>
 
