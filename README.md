@@ -4,7 +4,7 @@ Meet is a video call client running on a Raspberry Pi. The idea is to use a TV a
 For easy modification, the setup is descriped step by step for each Hardware module. First clone Repo:
 
 ```sh
-sudo git clone 
+git clone https://github.com/paschkel/Meet
 ```
 
 ## Camera
