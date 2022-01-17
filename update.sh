@@ -6,9 +6,9 @@ echo 'Meet Updater\n'
 sudo killall meet
 
 # Update Files
-git clone https://github.com/paschkel/Meet temp
-cp -r temp/* Meet
-rm -rf temp
+git clone https://github.com/paschkel/Meet ../temp
+cp -r ../temp/* .
+rm -rf ../temp
 
 # Reboot
 #sudo reboot
