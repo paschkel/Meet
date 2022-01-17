@@ -71,6 +71,7 @@ if(pid == 0) {
 	}
 }
 
+
 void PrepareMeeting(char number) {
 	
 	if(!(status & ACTIVE)) {
@@ -79,7 +80,7 @@ void PrepareMeeting(char number) {
 		printf("START Meeting %d\n", number);
 		#endif
 		// Open MeetingRoom File
-		//StartMeeting("https://meet.jit.si/", "maximewird5", "Maxime");
+		StartMeeting("https://meet.jit.si/", "paschkel.de", "Pascal");
 		}
 	}
 
@@ -138,8 +139,6 @@ FanInit();
 
 
 
-
-
 while(1)
 	{
 	FanControl(status & ACTIVE);
@@ -186,33 +185,15 @@ while(1)
 				break;
 								
 			case GREEN:						// Start Video Call
-				if(!(status & ACTIVE)) {
-					status |= ACTIVE;
-					#ifdef DEBUG					
-					printf("START\n");
-					#endif
-					StartMeeting("https://meet.jit.si/", "paschkel.de", "Pascal");
-					}
+					PrepareMeeting(meetingRoom);
 				break;
 
 			case FAV_1:						// Start Video Call - FAV 1
-				if(!(status & ACTIVE)) {
-					status |= ACTIVE;
-					#ifdef DEBUG					
-					printf("START\n");
-					#endif
-					StartMeeting("https://meet.studiumdigitale.uni-frankfurt.de/", "smhTtjkFWI", "PI");
-					}
+					PrepareMeeting(1);
 				break;			
 
 			case FAV_2:						// Start Video Call - FAV 2
-				if(!(status & ACTIVE)) {
-					status |= ACTIVE;
-					#ifdef DEBUG					
-					printf("START\n");
-					#endif
-					StartMeeting("https://meet.jit.si/", "maximewird5", "Maxime");
-					}
+					PrepareMeeting(2);
 				break;			
 
 			case FAV_3:						// Start Video Call - FAV 3
@@ -237,17 +218,25 @@ while(1)
 				break;				
 
 			case MINUS:
-					if(meetingRoom > 0) meetingRoom--;
-					#ifdef DEBUG
-						printf(">>> %d\n", meetingRoom);
-					#endif
+					if(!(status & ACTIVE) && !(status & MUTEDELAY)) {
+						if(meetingRoom > 0) meetingRoom--;
+						#ifdef DEBUG
+							printf(">>> %d\n", meetingRoom);
+						#endif
+						status |= MUTEDELAY;
+						alarm(1);  				// Just one event per second
+						}			
 				break;	
 				
 			case PLUS:
-					if(meetingRoom < 5) meetingRoom++;
-					#ifdef DEBUG
-						printf(">>> %d\n", meetingRoom);
-					#endif
+					if(!(status & ACTIVE) && !(status & MUTEDELAY)) {
+						if(meetingRoom < 15) meetingRoom++;
+						#ifdef DEBUG
+							printf(">>> %d\n", meetingRoom);
+						#endif
+						status |= MUTEDELAY;
+						alarm(1);  				// Just one event per second
+						}
 				break;		
 								
 			default:
