@@ -14,6 +14,7 @@
 #include "led.h"
 #include "fan.h"
 
+#define		VERSION		"1.00"
 
 
 // status
@@ -113,6 +114,8 @@ meetingRoom = 1;
 
 
 status = 0;
+
+printf("Version " VERSION "\n");
 
 signal(SIGINT, INThandler);					// Interrupt for CRRL + C to break
 signal(SIGALRM, &sigalrm_handler);  		// set a signal handler for mute delay
