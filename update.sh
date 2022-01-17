@@ -7,7 +7,7 @@ sudo killall meet
 
 # Update Files
 git clone https://github.com/paschkel/Meet temp
-mv temp Meet
+cp -r temp/* Meet
 rm -rf temp
 
 # Reboot
