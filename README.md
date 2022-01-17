@@ -10,17 +10,15 @@ git clone https://github.com/paschkel/Meet
 ## Camera
 Enable camera and increade GPU Mem to 128 or 256
 
-Raspberry Pi Camera worked directly in Chromium till Version 88. For latest Version of Chromium, following workaround ir required:
-You can test, if that workaround ir required, by starting webrtc testpage or starting a jitsi meeting in chromium. If camera is working, no workaround is required.
+Raspberry Pi Camera worked directly in Chromium till Version 88. For latest Version of Chromium, following workaround is required:
+You can test, if that workaround is needed, by starting webrtc testpage or starting a jitsi meeting in chromium. If camera is working, skip next steps.
 
 Install v4l2 Loopback:
 ```sh
 sudo apt install v4l2loopback-dkms
 ```
 Autostart script for Workaround:
-- Move File "CameraWoraround.desktop" to "/home/pi/.config/autostart"
-- Move File "CameraWorkaround.sh" to "/home/pi/MeetApp"
-
+- Move File "meet/camera/CameraWoraround.desktop" to "/home/pi/.config/autostart"
 
 
 ## IR Controller
@@ -71,7 +69,7 @@ sudo python3 i2smic.py
 ```sh
 sudo reboot
 ```
-Create Volume Controll for new Input. Add folloing file and paste content off "asound.conf". Save and exit file.
+Create Volume Controll for new Input. Add folloing file and paste content off "meet/audio/asound.conf". Save and exit file.
 ```sh
 sudo nano /etc/asound.conf
 ```
@@ -90,6 +88,7 @@ sudo ./i2smic.sh
 ```
 
 ## HDMI
+To see device name on TV for port selection, define OSD name in config.txt:
 ```sh
 sudo nano /boot/config.txt
 ```
@@ -99,15 +98,12 @@ cec_osd_name=Meet
 Hotplug???
 
 ## MeetApp
- Move File Application Files (*.c & *.h) to "/home/pi/MeetApp"<br>
-
-To Autostart MeetApp, move File "CameraWoraround.desktop" to "/home/pi/.config/autostart"
+To Autostart MeetApp, move File "meet/CameraWoraround.desktop" to "/home/pi/.config/autostart"
 
 Install XDO-Tool (used to send Keys to browser for Mute, Video Off, etc.)
 ```sh
 sudo apt-get install xdotool
 ```
-
 
 Install WiringPi (if not already there). Wiring Pi is required to driver LED and Fan.
 ```sh
