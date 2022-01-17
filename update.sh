@@ -10,5 +10,8 @@ git clone https://github.com/paschkel/Meet ../temp
 cp -r ../temp/* .
 rm -rf ../temp
 
+# Restart Application
+./meet
+
 # Reboot
-sudo reboot
+# sudo reboot
