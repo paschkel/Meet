@@ -1,4 +1,5 @@
-# Meet
+# Meet - TV video call system using Raspberry PI
+Meet is a video call client running on a raspberry pi. It using jitsi (and can extended to others). 
 Steps to install Meet. Installation is seperated per Hardware module.
 - Download all Files
 - Create folder "/home/pi/MeetApp"
