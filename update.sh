@@ -11,4 +11,4 @@ cp -r ../temp/* .
 rm -rf ../temp
 
 # Reboot
-#sudo reboot
+sudo reboot
