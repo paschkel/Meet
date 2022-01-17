@@ -2,6 +2,13 @@
 
 echo 'Meet Updater\n'
 
+# Stop Application
 sudo killall meet
-git clone https://github.com/paschkel/Meet
-sudo reboot
+
+# Update Files
+git clone https://github.com/paschkel/Meet temp
+mv temp Meet
+rm -rf temp
+
+# Reboot
+#sudo reboot
