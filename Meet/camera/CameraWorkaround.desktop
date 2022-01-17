@@ -1,7 +1,0 @@
-[Desktop Entry]
-
-Type=Application
-
-Name=CameraWorkaround
-
-Exec=/home/pi/Meet/camera/CameraWorkaround.sh
