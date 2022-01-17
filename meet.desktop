@@ -4,4 +4,4 @@ Type=Application
 
 Name=Meet
 
-Exec=/home/pi/MeetApp/meet
+Exec=/home/pi/Meet/meet
