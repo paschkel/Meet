@@ -1,5 +1,5 @@
 # Meet - TV video call system using Raspberry PI
-Meet is a video call client running on a Raspberry Pi. The idea is to use a TV and an IR-controller for easy usage, so grandma can see the kids. It is using jitsi (and can be extended to others).
+Meet is a video call client running on a Raspberry Pi. The idea is to use a TV and an IR-controller for easy usage, so grandma can see the kids. It is using jitsi (and can be extended to others). The software is simply starting chromium in kiosk mode and translating IR controller commands to the browser.
 <br><br>
 For easy modification, the setup is descriped step by step for each Hardware module. First clone Repo:
 
@@ -53,7 +53,7 @@ sudo apt-get install libasound2 alsa-utils alsa-oss
 ```sh
 sudo reboot
 ```
-Install Microphone
+Install Microphone [1]
 ```sh
 sudo apt install python3-pip
 ```
@@ -116,3 +116,6 @@ Define OFF-Pin in "/boot/config.txt"
 ```sh
 sudo nano /boot/config.txt
 ```
+<hr>
+[1]   Adafruit Website: https://learn.adafruit.com/adafruit-i2s-mems-microphone-breakout/raspberry-pi-wiring-test
+[2]   ..
