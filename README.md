@@ -116,6 +116,8 @@ Define OFF-Pin in "/boot/config.txt"
 ```sh
 sudo nano /boot/config.txt
 ```
+
+<br><br>
 <hr>
-[1]   Adafruit Website: https://learn.adafruit.com/adafruit-i2s-mems-microphone-breakout/raspberry-pi-wiring-test
+[1]   Adafruit Website: https://learn.adafruit.com/adafruit-i2s-mems-microphone-breakout/raspberry-pi-wiring-test <br>
 [2]   ..
