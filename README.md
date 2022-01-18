@@ -8,6 +8,7 @@ git clone https://github.com/paschkel/Meet
 ```
 
 ## Camera
+Meet is using standard raspberry pi camera.
 Enable camera and increade GPU Mem to 128 or 256
 
 Raspberry Pi Camera worked directly in Chromium till Version 88. For latest Version of Chromium, following workaround is required:
@@ -22,6 +23,7 @@ Autostart script for Workaround:
 
 
 ## IR Controller
+Hardware: TSOP4838 or similar, data pin connected to pin 15.<br>
 Define IR-Pin in "/boot/config.txt"
 ```sh
 sudo nano /boot/config.txt
@@ -38,6 +40,7 @@ sudo apt-get install ir-keytable
 
 
 ## Microphone
+Hardware: I2S microphone, like SPH0645LM4H or INMP441
 Installation of I2S Microphone
 Microphone in browser is not working with Pulseausio, just ALSA is required. So first step is to remove Pulseaudio:
 ```sh
@@ -95,7 +98,8 @@ sudo nano /boot/config.txt
 ```sh
 cec_osd_name=Meet
 ```
-Hotplug???
+Work in Process
+- Hotplug???
 
 ## MeetApp
 To Autostart MeetApp, move File "meet/CameraWoraround.desktop" to "/home/pi/.config/autostart"
@@ -112,6 +116,10 @@ sudo apt-get install wiringpi
 
 
 ## OnOff
+Work in Process
+- ON via remote controll
+
+
 Define OFF-Pin in "/boot/config.txt"
 ```sh
 sudo nano /boot/config.txt
