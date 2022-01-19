@@ -102,7 +102,7 @@ Work in Process
 - Hotplug???
 
 ## MeetApp
-To Autostart MeetApp, move File "meet/CameraWoraround.desktop" to "/home/pi/.config/autostart"
+To Autostart MeetApp, move File "meet/meet.desktop" to "/home/pi/.config/autostart"
 
 Install XDO-Tool (used to send Keys to browser for Mute, Video Off, etc.)
 ```sh
