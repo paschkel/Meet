@@ -125,7 +125,7 @@ signal(SIGALRM, &sigalrm_handler);  		// set a signal handler for mute delay
 system("sudo ir-keytable -p " INIT_IR_FRAME_FORMAT); 	// define IR frame format
 
 
-//system("v4l2-ctl --set-ctrl rotate=180");	// Rotate picture
+system("v4l2-ctl --set-ctrl rotate=180");	// Rotate picture
 system("v4l2-ctl -p 10");					// 15 fps
 
 
@@ -136,7 +136,7 @@ LED_GREEN;
 
 FanInit();
 
-
+ 
 
 
 while(1)
@@ -181,6 +181,15 @@ while(1)
 					system("xdotool key \"w\"");
 					status |= MUTEDELAY;
 					alarm(1);  				// Just one event per second
+					}
+				if(!(status & ACTIVE) && !(status & MUTEDELAY)) {
+					#ifdef DEBUG
+					printf("UPDATE\n");
+					#endif
+					LED_YELLOW;
+					system("~/Meet/update.sh");
+					status |= MUTEDELAY;
+					alarm(1);  		
 					}
 				break;
 								
