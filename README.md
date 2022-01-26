@@ -44,7 +44,7 @@ Hardware: I2S microphone, like SPH0645LM4H or INMP441
 Installation of I2S Microphone
 Microphone in browser is not working with Pulseausio, just ALSA is required. So first step is to remove Pulseaudio:
 ```sh
-sudo apt-get –-purge remove pulseaudio
+sudo apt-get --purge remove pulseaudio
 ```
 ```sh
 sudo reboot
