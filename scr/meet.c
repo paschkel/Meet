@@ -13,8 +13,10 @@
 #include "irController.h"
 #include "led.h"
 #include "fan.h"
+#include "rooms.h"
 
-#define		VERSION		"1.00"
+
+#define		VERSION		"1.01"
 
 
 // status
@@ -28,7 +30,6 @@
 // Global Variable
 char status;
 pid_t pid;
-
 
 
 
@@ -47,7 +48,7 @@ status &= ~MUTEDELAY;
 
  
 
-void StartMeeting(char *server, char *meeting, char *name) {
+void StartMeeting(struct MeetingRoom room) {
 char buffer[450];
 //"chromium --kiosk --noerrdialogs --disable-session-crashed-bubble --disable-infobars -- check-for-update-interval=604800 --disable-pinch  'https://meet.jit.si/paschkel.de#userInfo.displayName=\"Pascal\"&config.prejoinPageEnabled=false&interfaceConfig.TOOLBAR_BUTTONS=[\"microphone\",\"camera\",\"hangup\"]&interfaceConfig.TOOLBAR_ALWAYS_VISIBLE=false'"
 
@@ -59,13 +60,14 @@ if(pid == 0) {
 	// build meeting link
 	
 	strcpy(buffer, "chromium --kiosk --noerrdialogs --disable-session-crashed-bubble --disable-infobars --check-for-update-interval=604800 --disable-pinch '");
-	strcat(buffer, server);
-	strcat(buffer, meeting);
+	strcat(buffer, room.ServerLink);
+	strcat(buffer, room.RoomLink);
 	strcat(buffer, "#userInfo.displayName=\"");
-	strcat(buffer, name);
+	strcat(buffer, room.DisplayName);
 	strcat(buffer, "\"&config.prejoinPageEnabled=false&interfaceConfig.TOOLBAR_BUTTONS=[\"microphone\",\"camera\",\"hangup\",\"tileview\"]&interfaceConfig.TOOLBAR_ALWAYS_VISIBLE=true' --use-fake-ui-for-media-stream");
 
-	system(buffer); 
+	//system(buffer); 
+	printf(buffer);
 
 	exit(EXIT_SUCCESS);
 	}
@@ -73,6 +75,7 @@ if(pid == 0) {
 
 
 void PrepareMeeting(char number) {
+struct MeetingRoom room;
 	
 	if(!(status & ACTIVE)) {
 		status |= ACTIVE;
@@ -80,12 +83,17 @@ void PrepareMeeting(char number) {
 		printf("START Meeting %d\n", number);
 		#endif
 		// Open MeetingRoom File
-		StartMeeting("https://meet.jit.si/", "paschkel.de", "Pascal");
+		room = GetMeetingRoom(number);
+		#ifdef DEBUG
+		printf("Meeting Room: %s%s %s \n", room.ServerLink, room.RoomLink, room.DisplayName);
+		#endif
+		StartMeeting(room);
 		}
 	}
 
 
 void TerminateMeeting(void) {
+	
 	if(status & ACTIVE) {
 		status &= ~ACTIVE;
 		#ifdef DEBUG

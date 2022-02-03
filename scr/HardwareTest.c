@@ -61,6 +61,8 @@ FanStop();
 printf("4. Audio Test - PLease make noise!\n\n");
 system("arecord -D dmic_sv -c2 -r 44100 -f S32_LE -t wav -V mono  HardwareTestAudio.wav --duration=5"); 
 
+
+printf("\n\nPLAY SOUND\n\n");
 system("aplay -D hw:b1 HardwareTestAudio.wav"); 
 
 printf("\n\nDid Sound Worked?\n");
