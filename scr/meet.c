@@ -49,32 +49,26 @@ status &= ~MUTEDELAY;
  
 
 void StartMeeting(struct MeetingRoom room) {
-char buffer[450];
-//"chromium --kiosk --noerrdialogs --disable-session-crashed-bubble --disable-infobars -- check-for-update-interval=604800 --disable-pinch  'https://meet.jit.si/paschkel.de#userInfo.displayName=\"Pascal\"&config.prejoinPageEnabled=false&interfaceConfig.TOOLBAR_BUTTONS=[\"microphone\",\"camera\",\"hangup\"]&interfaceConfig.TOOLBAR_ALWAYS_VISIBLE=false'"
+
+char * buffer;
 
 LED_RED;
 
 pid = fork();		// create seperate process....
 
 if(pid == 0) {
-	// build meeting link
+	// build meeting link	
+	asprintf(&buffer, "chromium --kiosk --noerrdialogs --disable-session-crashed-bubble --disable-infobars --check-for-update-interval=604800 --disable-pinch '%s%s#userInfo.displayName=\"%s\"&config.prejoinPageEnabled=false&interfaceConfig.TOOLBAR_BUTTONS=[\"microphone\",\"camera\",\"hangup\",\"tileview\"]&interfaceConfig.TOOLBAR_ALWAYS_VISIBLE=true' --use-fake-ui-for-media-stream", room.ServerLink, room.RoomLink, room.DisplayName );
+	system(buffer); 
 	
-	strcpy(buffer, "chromium --kiosk --noerrdialogs --disable-session-crashed-bubble --disable-infobars --check-for-update-interval=604800 --disable-pinch '");
-	strcat(buffer, room.ServerLink);
-	strcat(buffer, room.RoomLink);
-	strcat(buffer, "#userInfo.displayName=\"");
-	strcat(buffer, room.DisplayName);
-	strcat(buffer, "\"&config.prejoinPageEnabled=false&interfaceConfig.TOOLBAR_BUTTONS=[\"microphone\",\"camera\",\"hangup\",\"tileview\"]&interfaceConfig.TOOLBAR_ALWAYS_VISIBLE=true' --use-fake-ui-for-media-stream");
-
-	//system(buffer); 
-	printf(buffer);
-
+	free(buffer);
 	exit(EXIT_SUCCESS);
 	}
 }
 
 
 void PrepareMeeting(char number) {
+	
 struct MeetingRoom room;
 	
 	if(!(status & ACTIVE)) {
@@ -249,12 +243,12 @@ while(1)
 						#endif
 						status |= MUTEDELAY;
 						alarm(1);  				// Just one event per second
+						ShowRoom(meetingRoom);		
 						}		
-					ShowRoom(meetingRoom);		
+
 				break;	
 				
 			case PLUS:
-					printf("--> %d\n", CountRooms());
 					if(!(status & ACTIVE) && !(status & MUTEDELAY)) {
 						if(meetingRoom < CountRooms() ) meetingRoom++;
 						#ifdef DEBUG
@@ -262,8 +256,9 @@ while(1)
 						#endif
 						status |= MUTEDELAY;
 						alarm(1);  				// Just one event per second
+						ShowRoom(meetingRoom);								
 						}
-					ShowRoom(meetingRoom);		
+
 				break;		
 								
 			default:
