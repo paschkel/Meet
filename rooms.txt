@@ -1,0 +1,3 @@
+RoomName;System;ServerLink;RoomLink;DisplayName
+TEST1;jitsi;https://meet.jit.si/;test1;Testname1
+TEST2;jitsi;https://meet.jit.si/;test2;Testname2
