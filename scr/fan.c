@@ -39,7 +39,11 @@ void FanControl(char active) {
 		
 	} 
 
-
+void FanTest(void) {
+	
+	softPwmWrite (PIN_FAN, 70);
+	} 
+ 
  
 void FanStop(void) {
 	softPwmWrite (PIN_FAN, 0);
