@@ -19,5 +19,7 @@ struct MeetingRoom {
 
 #define MAX_LINE_LENGTH 500
 
+
+int CountRooms(void) ;
 struct MeetingRoom GetMeetingRoom(int index);
 void PresetRooms(void);

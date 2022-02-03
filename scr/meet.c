@@ -110,6 +110,13 @@ void TerminateMeeting(void) {
 	}
 
 
+void ShowRoom(int number) {
+	struct MeetingRoom room;
+	room = GetMeetingRoom(number);
+	#ifdef DEBUG
+	printf("Meeting Room: %d - %s\n", number, room.RoomName);
+	#endif
+	}
 
 
 int main()
@@ -236,24 +243,27 @@ while(1)
 
 			case MINUS:
 					if(!(status & ACTIVE) && !(status & MUTEDELAY)) {
-						if(meetingRoom > 0) meetingRoom--;
+						if(meetingRoom > 1) meetingRoom--;
 						#ifdef DEBUG
 							printf(">>> %d\n", meetingRoom);
 						#endif
 						status |= MUTEDELAY;
 						alarm(1);  				// Just one event per second
-						}			
+						}		
+					ShowRoom(meetingRoom);		
 				break;	
 				
 			case PLUS:
+					printf("--> %d\n", CountRooms());
 					if(!(status & ACTIVE) && !(status & MUTEDELAY)) {
-						if(meetingRoom < 15) meetingRoom++;
+						if(meetingRoom < CountRooms() ) meetingRoom++;
 						#ifdef DEBUG
 							printf(">>> %d\n", meetingRoom);
 						#endif
 						status |= MUTEDELAY;
 						alarm(1);  				// Just one event per second
 						}
+					ShowRoom(meetingRoom);		
 				break;		
 								
 			default:
