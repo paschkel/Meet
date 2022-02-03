@@ -7,6 +7,10 @@ sudo killall meet
 
 # Update Files
 git clone https://github.com/paschkel/Meet ../temp
+
+# Do not update 
+rm -rf ../temp/rooms.txt
+
 cp -r ../temp/* .
 rm -rf ../temp
 
