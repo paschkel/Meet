@@ -1,13 +1,5 @@
 
 
-//struct MeetingRoom {
-    //char RoomName[20];
-    //char MeetingSytem[10];
-    //char ServerLink[50];
-    //char RoomLink[50];
-    //char DisplayName[20];        
-//};
-
 struct MeetingRoom {
     char* RoomName;
     char* MeetingSytem;
@@ -17,8 +9,8 @@ struct MeetingRoom {
 };
 
 
-#define MAX_LINE_LENGTH 500
-
+#define     MAX_LINE_LENGTH     500
+#define     ROOM_FILE           "/home/pi/Meet/rooms.txt"
 
 int CountRooms(void) ;
 struct MeetingRoom GetMeetingRoom(int index);

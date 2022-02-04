@@ -12,7 +12,7 @@ int CountRooms(void) {
     char line[MAX_LINE_LENGTH] = {};
 
     // Open the file in the path.
-    if((file = fopen("rooms.txt", "r")) < 0) {
+    if((file = fopen(ROOM_FILE, "r")) < 0) {
         printf("cost file open error\n");
         }
 
@@ -42,7 +42,7 @@ char * token;
 
 
     // Open the file in the path.
-    if((file = fopen("rooms.txt", "r")) < 0) {
+    if((file = fopen(ROOM_FILE, "r")) < 0) {
         printf("cost file open error\n");
         }
 
