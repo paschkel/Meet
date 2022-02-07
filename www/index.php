@@ -2,7 +2,7 @@
 <HEAD>
 <TITLE>Meet</TITLE> 
 <link rel="stylesheet" type="text/css" href="style/s.css">
-
+<meta name="viewport" content="width=device-width,height=device-height,minimum-scale=1,maximum-scale=1"/>
 </HEAD>
 
 <BODY BGCOLOR="#FFFFFF" TEXT="#000000">
