@@ -1,0 +1,138 @@
+BODY {
+	color : #000000;
+	font-family : Arial, Helvetica, sans-serif;
+	font-size : 9pt;
+}
+
+
+H1  {
+	font-family : Arial, Helvetica, sans-serif;
+	font-size: 20pt;
+	font-weight : bold;
+	color : #606060;
+}
+
+H2  {
+	font-family : Arial, Helvetica, sans-serif;
+	font-size: 15pt;
+	font-weight : normal;
+	color : #aaaaaa;
+}
+
+H3  {
+	font-family : Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	font-weight : bold;
+}
+
+P  {
+	font-family : Arial, Arial, Helvetica, sans-serif;
+	font-size : 9pt;
+	font-weight : normal;
+	line-height : 14pt;
+}
+
+P.picture  {
+	font-family : Arial, Helvetica, sans-serif;
+	font-size: 9pt;
+	margin-top : 3pt;
+	margin-bottom : 3pt;
+	line-height : 14pt;
+}
+
+P.teaser  {
+	font-family : Arial, Helvetica, sans-serif;
+	font-size: 9pt;
+	margin-bottom : 8pt;
+	line-height : 14pt;
+}
+
+TD 	{
+	font-family : Arial, Helvetica, sans-serif;
+	font-size: 9pt;
+}
+
+TD.standardcell  {
+	font-family : Arial, Helvetica, sans-serif;
+	font-size: 9pt;
+}
+
+TD.headercell  {
+	font-family : Arial, Helvetica, sans-serif;
+	font-size: 9pt;
+	font-weight: bold;
+}
+
+.highlight {
+	font-weight : bold;
+	font-family : Arial, Helvetica, sans-serif;
+	font-size: 9pt;
+}
+
+.normal {
+	font-family : Arial, Helvetica, sans-serif;
+	font-size: 9pt;
+}
+
+
+.link {
+	font-weight : bold;
+	text-decoration : underline;
+	font-family : Arial, Helvetica, sans-serif;
+	font-size: 9pt;
+}
+
+.textfeld
+	{
+	border-size: 1px; 	/* Rahmen */ 
+	border-color: #aaaaaa; 	/* Rahmenfarbe */ 
+	border-style: solid; 	/* Rahmenstil */ 
+	background-color: #ffffff; /* Hintergrundfarbe */ 
+	font-family : Verdana, Arial, Helvetica, sans-serif;
+	color : #000000;
+	} 
+
+a:link {text-decoration: none;color:#606060;}
+a:visited {text-decoration: none;color:#606060;}
+a:active {text-decoration:none;color:#606060;}
+a:hover {text-decoration: underline;#606060;} 
+
+
+
+
+.ui-datepicker {
+background: #fff; /* Old browsers */
+background: #fff -moz-linear-gradient(top, #fcfcfc 0%, #fff 100%); /* FF3.6+ */
+background: #fff -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fcfcfc)), color-stop(100%,#fff)); /* Chrome,Safari4+ */
+background: #fff -webkit-linear-gradient(top, #fcfcfc 0%, #fff 100%); /* Chrome10+,Safari5.1+ */
+background: #fff -o-linear-gradient(top, #fcfcfc 0%, #fff 100%); /* Opera11.10+ */
+background: #fff -ms-linear-gradient(top, #fcfcfc 0%, #fff 100%); /* IE10+ */
+background: #fff linear-gradient(top, #fcfcfc 0%, #fff 100%); /* W3C */
+font-size:11px;
+padding:10px;
+border:1px solid #ccc;
+}
+ 
+.ui-datepicker table {
+width:278px;
+}
+ 
+.ui-datepicker table td {
+text-align:center;
+}
+ 
+.ui-datepicker a {
+cursor:pointer;
+text-decoration:none;
+}
+ 
+.ui-datepicker-prev {
+}
+ 
+.ui-datepicker-next {
+float:right;
+}
+ 
+.ui-datepicker-title {
+text-align: center;
+font-weight:bold;
