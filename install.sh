@@ -25,6 +25,7 @@ sudo apt-get install php -y
 
 # copy web files....
 cp -r ./www/* /var/www/html
+rm -f /var/www/html/index.html
 
 # To Autostart MeetApp, move File "meet/meet.desktop" to "/home/pi/.config/autostart"
 cp -r ./meet.desktop /home/pi/.config/autostart/
