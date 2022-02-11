@@ -9,6 +9,74 @@
 
 
 <?PHP
+$Save = $_GET["Save"];
+$RoomName = $_GET["RoomName"];
+$DisplayName = $_GET["DisplayName"];
+$System = $_GET["System"];
+$MeetingLink = $_GET["MeetingLink"];
+$item = $_GET["item"];
+$mode = $_GET["mode"];
+
+if($Save=="Save" && $item=="NEW")
+	{
+	$Output = "$RoomName;$System;$MeetingLink;$DisplayName\n";
+	
+	$file = fopen("rooms.txt", "a");							// write data to file
+	fputs($file, $Output); 
+	fclose($file);	
+	}
+
+
+
+if($Save=="Save" && $item!="NEW")
+	 {
+	 $filename = "rooms.txt";
+	 $Output = "$RoomName;$System;$MeetingLink;$DisplayName\n";
+		
+	 $dat = file($filename);
+	 $row_count = count($dat);
+
+	 $file_handle = fopen($filename, 'w+');
+
+	 for ($row = 0; $row < $row_count; $row++)
+	   {
+	   if ($row != $item)
+			fputs($file_handle, $dat[$row]);
+		else
+			fputs($file_handle, $Output); 
+	   }
+	 
+	 fclose($file_handle);
+	 }
+
+
+
+// - Datensatz löschen -----------------------------------
+
+if($mode=="delete")
+ {
+ $filename = "rooms.txt";
+
+ $dat = file($filename);
+ $row_count = count($dat);
+
+ $file_handle = fopen($filename, 'w+');
+
+ for ($row = 0; $row < $row_count; $row++)
+   {
+   if ($row != $item)
+     {
+     fwrite($file_handle, $dat[$row]);
+     }
+   }
+ 
+ fclose($file_handle);
+ }
+
+
+?>
+
+<?PHP
 
 $data = file("rooms.txt");
 $count = count($data);
@@ -26,8 +94,8 @@ $i--;
 
 <tr> 
 	<td width="50" 	align="left"><b>No</b></td>
-	<td width="120" align="left"><b>System</b></td>	
-	<td width="120" align="left"><b>Room Name</b></td>
+	<td width="120" align="left"><b>Room Name</b></td>	
+	<td width="120" align="left"><b>System</b></td>
 	<td width="240" align="left"><b>Meeting Link</b></td> 
 	<td width="120" align="left"><b>Display Name</b></td>	
 	<td width="120" align="left"><b></b></td>		
@@ -48,13 +116,25 @@ $i--;
 	<td  align="left"><?PHP echo $i; ?></td>
 	<td  align="left"><?PHP echo $parts[0]; ?></td>		
 	<td  align="left"><?PHP echo $parts[1]; ?></td>	
-	<td  align="left"><?PHP echo $parts[2] . $parts[3]; ?></td>	
-	<td  align="left"><?PHP echo $parts[4]; ?></td>
-	<td  align="left"></td>	
+	<td  align="left"><?PHP echo $parts[2]; ?></td>	
+	<td  align="left"><?PHP echo $parts[3]; ?></td>
+	<td  align="left">
+	    <button  onclick="window.location.href='edit.php?item=<?PHP echo $i;?>';">Edit</button>
+	    <button  onclick="window.location.href='index.php?mode=delete&item=<?PHP echo $i;?>';">Delete</button>
+	</td>	
 </tr>
-  
- 
-<?PHP } ?>
+<?PHP } ?>  
+ <tr> 
+	<td  align="left"></td>
+	<td  align="left"></td>		
+	<td  align="left"></td>	
+	<td  align="left"></td>	
+	<td  align="left"></td>
+	<td  align="left">
+	    <button  onclick="window.location.href='edit.php?item=NEW';">New</button>
+	</td>	
+</tr>
+
 
 </table>
 
