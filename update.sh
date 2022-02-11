@@ -9,10 +9,12 @@ sudo killall meet
 git clone https://github.com/paschkel/Meet ../temp
 
 # Do not update 
-rm -rf ../temp/rooms.txt
+rm -rf ../temp/www/rooms.txt
 
 cp -r ../temp/* .
 rm -rf ../temp
+
+sudo cp -r ./www/* /var/www/html
 
 # Restart Application
 sudo ~/Meet/meet

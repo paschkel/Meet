@@ -26,6 +26,8 @@ echo 'Meet Installer\n'
 # copy web files....
 sudo cp -r ./www/* /var/www/html
 sudo rm -f /var/www/html/index.html
+sudo chmod 777 /var/www/html/rooms.txt
+
 
 # To Autostart MeetApp, move File "meet/meet.desktop" to "/home/pi/.config/autostart"
 ##cp -r ./meet.desktop /home/pi/.config/autostart/
