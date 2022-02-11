@@ -1,4 +1,4 @@
-﻿<HTML>
+<HTML>
 <HEAD>
 <TITLE>Meet</TITLE> 
 <link rel="stylesheet" type="text/css" href="style/s.css">
@@ -68,4 +68,3 @@ $data = file("rooms.txt");
 
 </BODY>
 </HTML>
-

@@ -55,8 +55,6 @@ char * token;
     token = strtok( NULL, ";");    
     mem.MeetingSytem = token;
     token = strtok( NULL, ";");    
-    mem.ServerLink = token;
-    token = strtok( NULL, ";");    
     mem.RoomLink = token;
     token = strtok( NULL, ";");   
     mem.DisplayName = token;      
@@ -71,8 +69,3 @@ return mem;
 } 
 
 	
-	
-void PresetRooms(void)	{
-	
-}
-

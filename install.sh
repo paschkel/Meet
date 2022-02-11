@@ -8,7 +8,7 @@ echo 'Meet Installer\n'
 # cp -r ./camera/CameraWoraround.desktop /home/pi/.config/autostart/
 
 # LIRC
-sudo apt-get install ir-keytable -y
+##sudo apt-get install ir-keytable -y
 # dtoverlay=gpio-ir,gpio_pin=15
 
 # HDMI
@@ -16,16 +16,17 @@ sudo apt-get install ir-keytable -y
 # cec_osd_name=Meet
 
 # XDO and wiringPi
-sudo apt-get install xdotool -y
-sudo apt-get install wiringpi -y
+##sudo apt-get install xdotool -y
+##sudo apt-get install wiringpi -y
 
 # install Webserver and PHP
-sudo apt-get install apache2 -y
-sudo apt-get install php -y
+#sudo apt-get install apache2 -y
+#sudo apt-get install php -y
 
 # copy web files....
-cp -r ./www/* /var/www/html
-rm -f /var/www/html/index.html
+sudo cp -r ./www/* /var/www/html
+sudo rm -f /var/www/html/index.html
 
 # To Autostart MeetApp, move File "meet/meet.desktop" to "/home/pi/.config/autostart"
-cp -r ./meet.desktop /home/pi/.config/autostart/
+##cp -r ./meet.desktop /home/pi/.config/autostart/
+

@@ -58,7 +58,7 @@ pid = fork();		// create seperate process....
 
 if(pid == 0) {
 	// build meeting link	
-	asprintf(&buffer, "chromium --kiosk --noerrdialogs --disable-session-crashed-bubble --disable-infobars --check-for-update-interval=604800 --disable-pinch '%s%s#userInfo.displayName=\"%s\"&config.prejoinPageEnabled=false&interfaceConfig.TOOLBAR_BUTTONS=[\"microphone\",\"camera\",\"hangup\",\"tileview\"]&interfaceConfig.TOOLBAR_ALWAYS_VISIBLE=true' --use-fake-ui-for-media-stream", room.ServerLink, room.RoomLink, room.DisplayName );
+	asprintf(&buffer, "chromium --kiosk --noerrdialogs --disable-session-crashed-bubble --disable-infobars --check-for-update-interval=604800 --disable-pinch '%s#userInfo.displayName=\"%s\"&config.prejoinPageEnabled=false&interfaceConfig.TOOLBAR_BUTTONS=[\"microphone\",\"camera\",\"hangup\",\"tileview\"]&interfaceConfig.TOOLBAR_ALWAYS_VISIBLE=true' --use-fake-ui-for-media-stream", room.RoomLink, room.DisplayName );
 	system(buffer); 
 	
 	free(buffer);
@@ -79,7 +79,7 @@ struct MeetingRoom room;
 		// Open MeetingRoom File
 		room = GetMeetingRoom(number);
 		#ifdef DEBUG
-		printf("Meeting Room: %s%s %s \n", room.ServerLink, room.RoomLink, room.DisplayName);
+		printf("Meeting Room: %s %s \n", room.RoomLink, room.DisplayName);
 		#endif
 		StartMeeting(room);
 		}

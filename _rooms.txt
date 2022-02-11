@@ -1,0 +1,6 @@
+RoomName;System;ServerLink;RoomLink;DisplayName
+paschkel;jitsi;https://meet.jit.si/;paschkel.de;Pascal
+Yvonne;jitsi;https://meet.jit.si/;YvonneAusHamburg;Yvonne
+ratamatata;jitsi;https://meet.jit.si/;ratamatata;ICH
+TEST4;jitsi;https://meet.jit.si/;test4;Testname4
+TEST5;jitsi;https://meet.jit.si/;test5;Testname5
