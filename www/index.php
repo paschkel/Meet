@@ -8,7 +8,7 @@
 <BODY BGCOLOR="#FFFFFF" TEXT="#000000">
 
 
-<?
+<?PHP
 
 $data = file("rooms.txt");
 $count = count($data);
@@ -25,34 +25,36 @@ $i--;
 <table>
 
 <tr> 
-	<td width="50"  align="left"><b>no</b></td>
-	<td width="60"   align="left"><b>Room Name</b></td>
-	<td width="120"  align="left"><b>Meeting Link</b></td> 
-	<td width="80"  align="left"><b>Display Name</b></td>	
-	
+	<td width="50" 	align="left"><b>No</b></td>
+	<td width="120" align="left"><b>System</b></td>	
+	<td width="120" align="left"><b>Room Name</b></td>
+	<td width="240" align="left"><b>Meeting Link</b></td> 
+	<td width="120" align="left"><b>Display Name</b></td>	
+	<td width="120" align="left"><b></b></td>		
 </tr> 
   
   
   
   
-<?
- for ($i =  $count-1; $i >= 0; $i--)
+<?PHP
+ for ($i = 1; $i < $count; $i++)
    {
-@   $parts = explode("|", $data[$i]);
+@   $parts = explode(";", $data[$i]);
 	
 ?>
 
  
 <tr> 
-	<td  align="left"><? echo $i; ?></td>
-	<td  align="left"><? echo $parts[0]; ?></td>	
-	<td  align="left"><? echo $parts[1] . $parts[2]; ?></td>	
-	<td  align="left"><? echo $parts[3]; ?></td>
-	
+	<td  align="left"><?PHP echo $i; ?></td>
+	<td  align="left"><?PHP echo $parts[0]; ?></td>		
+	<td  align="left"><?PHP echo $parts[1]; ?></td>	
+	<td  align="left"><?PHP echo $parts[2] . $parts[3]; ?></td>	
+	<td  align="left"><?PHP echo $parts[4]; ?></td>
+	<td  align="left"></td>	
 </tr>
   
  
-<?} ?>
+<?PHP } ?>
 
 </table>
 
