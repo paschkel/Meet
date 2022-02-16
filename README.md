@@ -1,5 +1,5 @@
 # Meet - TV video call system using Raspberry PI
-Meet is a video call client running on a Raspberry Pi. The idea is to use a TV and an IR-controller for easy usage, so grandma can see the kids. It is using jitsi (and can be extended to others). The software is simply starting chromium in kiosk mode and translating IR controller commands to the browser.
+Meet is a video call client running on a Raspberry Pi. The idea is to use a TV and an IR-controller for easy usage, so grandma can see the kids. It is using jitsi (and can be extended to others). The software is simply starting chromium in kiosk mode and translating IR controller commands to the browser. Settings can be done on webpage (http://meet/).
 <br><br>
 For easy modification, the setup is descriped step by step for each Hardware module. First clone Repo:
 
