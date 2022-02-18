@@ -119,8 +119,8 @@ $i--;
 	<td  align="left"><?PHP echo $parts[2]; ?></td>	
 	<td  align="left"><?PHP echo $parts[3]; ?></td>
 	<td  align="left">
-	    <button  onclick="window.location.href='edit.php?item=<?PHP echo $i;?>';">Edit</button>
-	    <button  onclick="window.location.href='index.php?mode=delete&item=<?PHP echo $i;?>';">Delete</button>
+	    <button class="textfeld" onclick="window.location.href='edit.php?item=<?PHP echo $i;?>';">Edit</button>
+	    <button class="textfeld" onclick="window.location.href='index.php?mode=delete&item=<?PHP echo $i;?>';">Delete</button>
 	</td>	
 </tr>
 <?PHP } ?>  
@@ -131,7 +131,7 @@ $i--;
 	<td  align="left"></td>	
 	<td  align="left"></td>
 	<td  align="left">
-	    <button  onclick="window.location.href='edit.php?item=NEW';">New</button>
+	    <button class="textfeld" onclick="window.location.href='edit.php?item=NEW';">New</button>
 	</td>	
 </tr>
 

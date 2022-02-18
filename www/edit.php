@@ -59,7 +59,7 @@ $data = file("rooms.txt");
 
 <tr>
  <td valign="top"><span class="normal"></td>
- <td valign="top"><button onclick="window.location.href='index.php';">Cancel</button><input  class="textfeld" type="submit" name="Save" value="Save"></td>
+ <td valign="top"><button class="textfeld" onclick="window.location.href='index.php';">Cancel</button><input  class="textfeld" type="submit" name="Save" value="Save"></td>
 </tr>
 
 
